@@ -7,6 +7,15 @@ spring:
     url: jdbc:mysql://49.233.123.122:3306/iot?useUnicode=true&useSSL=false&characterEncoding=utf8&serverTimezone=Asia/Shanghai
     username: admin
     password: 123456
+# 发送邮箱
+  mail:
+    protocol: smtp
+    host: smtp.qq.com
+    port: 587
+    username: 2507755628@qq.com
+    #授权码
+    password: kcorovbnsrwuecci
+    default-encoding: UTF-8
 
 # mybatis配置
 mybatis-plus:
@@ -26,3 +35,10 @@ mybatis-plus:
     cache-enabled: true #开启二级缓存
   mapper-locations: classpath*:/mapper/*.xml
   type-aliases-package: com.isoftstone.manage.entity
+
+# # oss测试
+aliyun:
+  endpoint: http://oss-cn-beijing.aliyuncs.com
+  accessKeyId: LTAI5t8cbXdr9bEFsc6jvchY
+  accessKeySecret: pQQJwfw13tmFyEcYCkInP6r3kOt27Y
+  bucketName: issglobal
