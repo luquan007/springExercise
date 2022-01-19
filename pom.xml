@@ -152,6 +152,28 @@
             <version>3.10.2</version>
         </dependency>
         <!--oss 依赖 end-->
+
+        <!--springboot-配置redis start-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
+        <!--springboot-配置redis end-->
+
+        <!--阿里的json-->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.51</version>
+        </dependency>
+
+        <!--解析图片-->
+        <dependency>
+            <groupId>com.drewnoakes</groupId>
+            <artifactId>metadata-extractor</artifactId>
+            <version>2.12.0</version>
+        </dependency>
+
     </dependencies>
 
     <build>

@@ -29,8 +29,9 @@ public class CodeGenerator {
 
     private static String projectPath = System.getProperty("user.dir");
     private static String DriverName ="com.mysql.cj.jdbc.Driver";
-    private static String Url = "jdbc:mysql://49.233.123.122:3306/iot?useUnicode=true&useSSL=false&characterEncoding=utf8";
-    private static String username = "admin";
+    //private static String Url = "jdbc:mysql://49.233.123.122:3306/iot?useUnicode=true&useSSL=false&characterEncoding=utf8";
+    private static String Url = "jdbc:mysql://127.0.0.1:3306/test?useUnicode=true&useSSL=false&characterEncoding=utf8&serverTimezone=Asia/Shanghai";
+    private static String username = "root";
     private static String password = "123456";
     private static String MICROSERVICE = "";
 
