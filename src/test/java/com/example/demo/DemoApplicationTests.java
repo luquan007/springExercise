@@ -25,5 +25,10 @@ class DemoApplicationTests {
         mockMvc.perform(get("/")).andExpect(status().isOk()).andExpect(view().name("Taco"))
                 .andExpect(content().string(containsString("welcome to ....")));
     }*/
+    @Test
+    public String haveFun(){
+
+        return null;
+    }
 
 }

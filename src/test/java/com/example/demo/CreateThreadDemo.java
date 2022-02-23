@@ -1,7 +1,17 @@
-package com.example.demo.controller;
+package com.example.demo;
 
 import lombok.SneakyThrows;
+import org.junit.jupiter.api.Test;
+import org.junit.runner.RunWith;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 
+
+/**
+ * 多线程（Multi-threaded）的实验（experiment）
+ */
+@SpringBootTest
+@RunWith(SpringRunner.class)
 public class CreateThreadDemo  extends Thread {
 
     public CreateThreadDemo(){
@@ -22,7 +32,10 @@ public class CreateThreadDemo  extends Thread {
     /**
      *  输出当前线程的信息
      */
-    private static void printThreadInfo(){
+    @Test
+    public void printThreadInfo(){
         System.out.println(String.format("当前运行的线程名为：%s",Thread.currentThread().getName()));
     }
+
+
 }

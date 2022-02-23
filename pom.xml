@@ -34,6 +34,7 @@
             <scope>runtime</scope>
             <optional>true</optional>
         </dependency>
+        <!-- 单元测试 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
@@ -54,6 +55,17 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
+
+        <!-- 引入sqlServer的支持start 微软不允许以maven的方式直接下载该文件必须下好-->
+        <dependency>
+            <groupId>com.microsoft.sqlserver</groupId>
+            <artifactId>sqljdbc4</artifactId>
+            <version>4.0</version>
+        </dependency>
+        <!-- 引入sqlServer的支持end -->
+
+
+
 
         <!-- 引入 security 的依赖 start-->
         <!--<dependency>
@@ -167,11 +179,22 @@
             <version>1.2.51</version>
         </dependency>
 
+        <!--s3 连接-->
+        <dependency>
+            <groupId>software.amazon.awssdk</groupId>
+            <artifactId>s3</artifactId>
+            <version>2.17.41</version>
+        </dependency>
+
         <!--解析图片-->
         <dependency>
             <groupId>com.drewnoakes</groupId>
             <artifactId>metadata-extractor</artifactId>
             <version>2.12.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-test</artifactId>
         </dependency>
 
     </dependencies>

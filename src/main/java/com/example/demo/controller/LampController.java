@@ -38,5 +38,4 @@ public class LampController {
     public Long status(Long id){
         return lampService.status(id);
     }
-
 }

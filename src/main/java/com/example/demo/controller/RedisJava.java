@@ -18,7 +18,6 @@ import java.util.concurrent.TimeUnit;
 public class RedisJava {
 
     /**
-     *
      * 当redis数据库里本来存的是字符串数据或者你要存取的数据就是字符串类型的数据时使用StringRedisTemplate
      * 但是如果是复杂的对象类型，而且取出的时候又不想有任何数据转换，直接从Redis里取出对象，那么使用RedisTemplate
      * 两种类型的数据不能互相通用
@@ -30,13 +29,33 @@ public class RedisJava {
 
     //保存键值对
     @GetMapping("save")
-    public void saveTest(){
-
+    public String saveTest() {
+        /*List keys = new ArrayList( stringRedisTemplate.keys("tagDataIds:*"));
+        List result=new ArrayList();
+        for (Object key : keys) {
+            String s = stringRedisTemplate.opsForValue().get(key);
+            result.add(s);
+        }
+        List<Long> longs = tagDataids();
+        for (Long aLong : longs) {
+            System.out.println(aLong);
+        }*/
+        Boolean sfasdfadsfa = stringRedisTemplate.delete("sfasdfadsfa");
+        return sfasdfadsfa.toString();
     }
-    @GetMapping("test")
-    public String test(String key){
 
-      //  redisTemplate.opsForValue().set("cq","LuQuan",100,TimeUnit.SECONDS);
+    @GetMapping("test")
+    public String test(String key) {
+
+        //stringRedisTemplate.opsForValue().get("tagDataIds:*");
+        //把列表中的id加到redis中
+        List<Long> longs = new ArrayList<>();
+
+        for (Long aLong : longs) {
+            stringRedisTemplate.opsForValue().set("tagDataIds:".concat(aLong.toString()), aLong.toString(), 300, TimeUnit.SECONDS);
+        }
+
+        //  redisTemplate.opsForValue().set("cq","LuQuan",100,TimeUnit.SECONDS);
         //stringRedisTemplate.opsForValue().set("cq001","LuQuan001",300,TimeUnit.SECONDS);
         /*stringRedisTemplate.opsForList().leftPush("cq", "disappear" ,"disappear2");
         stringRedisTemplate.opsForValue().set("cq001","LuQuan002");*/
@@ -62,11 +81,21 @@ public class RedisJava {
         stringRedisTemplate.delete("test:cq004");
         stringRedisTemplate.delete("test:cq005");
         stringRedisTemplate.delete("test:cq006");*/
-        stringRedisTemplate.opsForValue().set("free:bai","bai",30,TimeUnit.SECONDS);
-        return "null";
+        //stringRedisTemplate.opsForValue().set("free:bai","bai",30,TimeUnit.SECONDS);
+        return "完成";
 
     }
-
+    public List<Long> tagDataids(){
+        stringRedisTemplate.opsForValue().get("tagDataIds");
+        List list=new ArrayList();
+        List<String> tagDataIds = new ArrayList<>(stringRedisTemplate.keys("tagDataIds:*"));
+        if (tagDataIds.size() > 0) {
+            for (String tagDataId : tagDataIds) {
+                list.add(stringRedisTemplate.opsForValue().get(tagDataId));
+            }
+        }
+        return list;
+    }
 
 
     /**
@@ -132,8 +161,7 @@ public class RedisJava {
      *
      * @param key
      * @param value
-     * @param timeout
-     *            （以秒为单位）
+     * @param timeout （以秒为单位）
      */
     public void set(String key, String value, long timeout) {
         redisTemplate.opsForValue().set(key, value, timeout, TimeUnit.SECONDS);
@@ -146,7 +174,7 @@ public class RedisJava {
      * @return value
      */
     public String get(String key) {
-        return (String)redisTemplate.opsForValue().get(key);
+        return (String) redisTemplate.opsForValue().get(key);
     }
 
     // Hash（哈希表）
@@ -213,7 +241,7 @@ public class RedisJava {
      * @return 列表key的头元素。
      */
     public String lpop(String key) {
-        return (String)redisTemplate.opsForList().leftPop(key);
+        return (String) redisTemplate.opsForList().leftPop(key);
     }
 
     /**

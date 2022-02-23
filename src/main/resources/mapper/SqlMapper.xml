@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.SqlMapper">
+
+    <select id="getList" resultType="com.example.demo.entity.Antlia2tbltext">
+        SELECT TOP 50000 re.id ,re.transcription ,re.lang FROM [Data].dbo.antlia2tbltext re where re.id > #{id} ORDER by re.id ;
+    </select>
+</mapper>

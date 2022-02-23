@@ -1,27 +1,59 @@
 server:
   port: 10000
 
+#mysql的连接方式
+#spring:
+#  datasource:
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#    #url: jdbc:mysql://49.233.123.122:3306/iot?useUnicode=true&useSSL=false&characterEncoding=utf8&serverTimezone=Asia/Shanghai
+#    url: jdbc:mysql://127.0.0.1:3306/test?useUnicode=true&useSSL=false&characterEncoding=utf8&serverTimezone=Asia/Shanghai
+#    username: root
+#    password: 123456
+
+#sqlServer的连接方式
 spring:
   datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    #url: jdbc:mysql://49.233.123.122:3306/iot?useUnicode=true&useSSL=false&characterEncoding=utf8&serverTimezone=Asia/Shanghai
-    url: jdbc:mysql://127.0.0.1:3306/test?useUnicode=true&useSSL=false&characterEncoding=utf8&serverTimezone=Asia/Shanghai
-    username: root
-    password: 123456
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    url: jdbc:sqlserver://44.234.46.214:1433;DatabaseName=Data
+    username: sa
+    password: '*XKBJXnshu98OK4M'
+    maxActive: 20
+    initialSize: 1
+    maxWait: 60000
+    minIdle: 1
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: select 1
+    testWhileIdle: true
+    testOnBorrow: true
+    testOnReturn: true
+    poolPreparedStatements: true
+    maxOpenPreparedStatements: 20
+
 # 发送邮箱
+#  mail:
+#    protocol: smtp
+#    host: smtp.qq.com
+#    port: 587
+#    username: 2507755628@qq.com
+#    #授权码
+#    password: kcorovbnsrwuecci
+#    default-encoding: UTF-8
   mail:
     protocol: smtp
-    host: smtp.qq.com
-    port: 587
-    username: 2507755628@qq.com
+    host: smtp.isoftstone.com
+    port: 465
+    username: iSSMAG-Recruit
     #授权码
-    password: kcorovbnsrwuecci
+    password: h9zwe&TpWG7drn%f
+    #password: xld@qSH&
     default-encoding: UTF-8
+
   # redis相关设置
   redis:
     host: 127.0.0.1
     port: 6379
-    database: 2
+    database: 0
     timeout: 1000
     #password:
     lettuce:
