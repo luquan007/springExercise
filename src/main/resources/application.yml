@@ -43,7 +43,7 @@ spring:
     protocol: smtp
     host: smtp.isoftstone.com
     port: 465
-    username: iSSMAG-Recruit
+    username: iSSMAG-Recruit@isoftstone.com
     #授权码
     password: h9zwe&TpWG7drn%f
     #password: xld@qSH&

@@ -6,7 +6,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import javax.mail.Message;
 import javax.mail.MessagingException;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+import java.util.Properties;
 
 /**
  * 测试相关
@@ -30,6 +36,11 @@ public class SendEmail {
     public String sendSimpleMail(String from, String to, String subject, String text) throws MessagingException {
         return sendEmailService.sendSimpleMail(from, to, subject, text);
     }
+
+
+
+
+
 
     /*//不知道为啥老是访问不了：javax.net.ssl.SSLHandshakeException
         MimeMessage mimeMessage = javaMailSender.createMimeMessage();
