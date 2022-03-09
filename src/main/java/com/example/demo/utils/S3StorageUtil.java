@@ -22,17 +22,17 @@ import java.util.List;
 public class S3StorageUtil {
 
     @Value("${s3_access_key}")
-    private static String awd_access_key_id = "AKIA4OIA5L4N4HLGOFNN";
+    private static String awd_access_key_id = "";
     @Value("${s3_secret_key}")
-    private static String awd_secret_access_key = "1wUF8/Rwq0Wj8lTK/lvwLzUuaOZVxl7I5zs1cd0a";
+    private static String awd_secret_access_key = "";
     @Value("${s3_awd_bucket_us}")
-    private static String awd_bucket_us = "infinityxupload";
+    private static String awd_bucket_us = "";
     @Value("${s3_awd_bucket_eu}")
-    private static String awd_bucket_eu = "mag-eu-central-1";
+    private static String awd_bucket_eu = "";
     @Value("${s3_region_us}")
-    private static String region_us = "us-west-1";
+    private static String region_us = "";
     @Value("${s3_region_eu}")
-    private static String region_eu = "eu-central-1";
+    private static String region_eu = "";
     @Value("${file.upload.tempFilePath}")
     private static String tempFilePath = "D:/data/project_files";
 
