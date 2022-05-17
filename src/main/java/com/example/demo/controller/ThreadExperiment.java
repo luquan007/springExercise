@@ -16,15 +16,15 @@ public class ThreadExperiment extends Thread {
             log.info(name + "运行： " + i);
             //System.out.println(name + "运行： " + i);
             try {
-                sleep((int) Math.random()*10);
+                sleep((int) Math.random() * 10);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
     }
 
-    public static class Main{
-        public static void main(String[] args){
+    public static class Main {
+        public static void main(String[] args) {
             ThreadExperiment a = new ThreadExperiment("a");
             ThreadExperiment b = new ThreadExperiment("b");
             a.start();

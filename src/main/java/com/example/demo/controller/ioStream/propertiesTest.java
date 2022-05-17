@@ -12,7 +12,7 @@ public class propertiesTest {
         //2.加载指定配置文件
         //3.显示k-v
         //4.根据key获取对应的值
-        Properties properties=new Properties();
+        Properties properties = new Properties();
 
         properties.load(new FileReader("src/main/resources/application.yml"));
 

@@ -54,17 +54,17 @@ import javax.net.ssl.X509TrustManager;
 
 /**
  * @program: permission-audit
- * @description:  Waring !!!
- *  Very Important@!!!!
- *  TODO The certification need to be regenerated each time when website change a SSL certification.
- *   java InstallCert mail.xyzq.com.cn
+ * @description: Waring !!!
+ * Very Important@!!!!
+ * TODO The certification need to be regenerated each time when website change a SSL certification.
+ * java InstallCert mail.xyzq.com.cn
  * @author: hedy
  * @create: 2020-02-25 11:10
  **/
 public class InstallCert {
     public static void main(String[] args) throws Exception {
-        String host  ;
-        int port  ;
+        String host;
+        int port;
         char[] passphrase;
         if ((args.length == 1) || (args.length == 2)) {
             String[] c = args[0].split(":");
@@ -98,7 +98,7 @@ public class InstallCert {
         X509TrustManager defaultTrustManager = (X509TrustManager) tmf
                 .getTrustManagers()[0];
         SavingTrustManager tm = new SavingTrustManager(defaultTrustManager);
-        context.init(null, new TrustManager[] { tm }, null);
+        context.init(null, new TrustManager[]{tm}, null);
         SSLSocketFactory factory = context.getSocketFactory();
         System.out
                 .println("Opening connection to " + host + ":" + port + "...");
@@ -160,7 +160,9 @@ public class InstallCert {
                 .println("Added certificate to keystore 'jssecacerts' using alias '"
                         + alias + "'");
     }
+
     private static final char[] HEXDIGITS = "0123456789abcdef".toCharArray();
+
     private static String toHexString(byte[] bytes) {
         StringBuilder sb = new StringBuilder(bytes.length * 3);
         for (int b : bytes) {
@@ -171,19 +173,24 @@ public class InstallCert {
         }
         return sb.toString();
     }
+
     private static class SavingTrustManager implements X509TrustManager {
         private final X509TrustManager tm;
         private X509Certificate[] chain;
+
         SavingTrustManager(X509TrustManager tm) {
             this.tm = tm;
         }
+
         public X509Certificate[] getAcceptedIssuers() {
             throw new UnsupportedOperationException();
         }
+
         public void checkClientTrusted(X509Certificate[] chain, String authType)
                 throws CertificateException {
             throw new UnsupportedOperationException();
         }
+
         public void checkServerTrusted(X509Certificate[] chain, String authType)
                 throws CertificateException {
             this.chain = chain;

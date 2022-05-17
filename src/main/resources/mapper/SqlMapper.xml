@@ -3,6 +3,7 @@
 <mapper namespace="com.example.demo.mapper.SqlMapper">
 
     <select id="getList" resultType="com.example.demo.entity.Antlia2tbltext">
-        SELECT TOP 50000 re.id ,re.transcription ,re.lang FROM [Data].dbo.antlia2tbltext re where re.id > #{id} ORDER by re.id ;
+        SELECT TOP 50000 re.id ,re.transcription ,re.lang FROM [Data].dbo.antlia2tbltext re where re.id > #{id} ORDER by
+        re.id ;
     </select>
 </mapper>

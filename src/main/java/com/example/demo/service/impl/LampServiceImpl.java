@@ -12,7 +12,7 @@ import javax.annotation.Resource;
 
 /**
  * <p>
- *  服务实现类
+ * 服务实现类
  * </p>
  *
  * @author luQuan
@@ -23,16 +23,17 @@ public class LampServiceImpl extends ServiceImpl<LampMapper, Lamp> implements La
 
     @Resource
     private LampMapper lampMapper;
+
     @Override
     public String on(Long id) {
-        int result=lampMapper.on(id);
-        return result==0?"失败":"成功";
+        int result = lampMapper.on(id);
+        return result == 0 ? "失败" : "成功";
     }
 
     @Override
     public String off(Long id) {
-        int result=lampMapper.off(id);
-        return result==0?"失败":"成功";
+        int result = lampMapper.off(id);
+        return result == 0 ? "失败" : "成功";
     }
 
     @Override

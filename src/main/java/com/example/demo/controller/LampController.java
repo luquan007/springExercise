@@ -35,7 +35,7 @@ public class LampController {
     }
 
     @GetMapping("status")
-    public Long status(Long id){
+    public Long status(Long id) {
         return lampService.status(id);
     }
 }

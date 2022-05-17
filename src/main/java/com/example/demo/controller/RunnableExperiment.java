@@ -2,11 +2,10 @@ package com.example.demo.controller;
 
 import com.example.demo.entity.Order;
 import com.example.demo.entity.TranscriptionDTO;
-import com.mysql.cj.util.StringUtils;
-import jdk.nashorn.internal.runtime.regexp.joni.Regex;
 
-import java.util.*;
-import java.util.concurrent.ForkJoinPool;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -21,7 +20,7 @@ public class RunnableExperiment implements Runnable {
     @Override
     public void run() {
 
-        System.out.println("Running"+name);
+        System.out.println("Running" + name);
 
         for (int i = 0; i < 50; i++) {
             System.out.println(name + "运行： " + i);
@@ -128,9 +127,9 @@ public class RunnableExperiment implements Runnable {
     }
 
     /**
-     *当单个大写字母前后有空格但没有句号时报错
+     * 当单个大写字母前后有空格但没有句号时报错
      */
-    public static boolean fullStop(String str){
+    public static boolean fullStop(String str) {
         boolean matches = str.matches("^.*\\s[A-Z]\\s+.*$");
         return matches;
     }

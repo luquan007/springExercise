@@ -51,7 +51,7 @@ public class S3StorageUtil {
             AwsCredentialsProvider credentialsProvider = StaticCredentialsProvider.create(awsCredentials);
             S3Client s3Client = S3Client.builder().credentialsProvider(credentialsProvider).region(region).build();
             return s3Client;
-        } catch(Exception e) {
+        } catch (Exception e) {
             log.error("FileStorageUtil#creatS3Client:" + e);
             return null;
         }
@@ -59,6 +59,7 @@ public class S3StorageUtil {
 
     /**
      * 获取该连接下所有的容器信息
+     *
      * @return
      */
     public static String getFileUrl(String filePath, String position) {
@@ -76,6 +77,7 @@ public class S3StorageUtil {
 
     /**
      * 获取该连接下所有的容器信息
+     *
      * @return
      */
     public static List<Bucket> getBuckets(String position) {
@@ -90,6 +92,7 @@ public class S3StorageUtil {
 
     /**
      * 获取某个容器对象
+     *
      * @param bucketName
      * @return
      */
@@ -100,7 +103,7 @@ public class S3StorageUtil {
                 return null;
             }
             List<Bucket> buckets = creatS3Client(position).listBuckets().buckets();
-            if(buckets == null){
+            if (buckets == null) {
                 return resultBucket;
             }
             for (Bucket bucket : buckets) {
@@ -118,6 +121,7 @@ public class S3StorageUtil {
 
     /**
      * 新建容器
+     *
      * @param bucketName
      * @return
      */
@@ -134,6 +138,7 @@ public class S3StorageUtil {
 
     /**
      * 删除容器
+     *
      * @param bucketName
      * @return
      */
@@ -150,6 +155,7 @@ public class S3StorageUtil {
 
     /**
      * 删除容器中的某个数据
+     *
      * @param bucketName
      * @param objectName
      */
@@ -169,6 +175,7 @@ public class S3StorageUtil {
 
     /**
      * 上传本地文件到s3
+     *
      * @param filePath
      * @param fileName
      * @return
@@ -194,6 +201,7 @@ public class S3StorageUtil {
 
     /**
      * 上传远程文件到s3
+     *
      * @param file
      * @param fileName
      * @return
@@ -269,6 +277,7 @@ public class S3StorageUtil {
 
     /**
      * 下载对象
+     *
      * @param position
      * @param key
      */
@@ -290,14 +299,14 @@ public class S3StorageUtil {
                     .key(key)
                     .build();
             ResponseInputStream<GetObjectResponse> object = creatS3Client(position).getObject(getObjectRequest);
-            String fileName = key.substring(key.lastIndexOf("/")+1,key.length());
+            String fileName = key.substring(key.lastIndexOf("/") + 1, key.length());
             String filePath = folder + "/" + fileName;
             FileUtils.createFile(filePath);
             FileOutputStream out = new FileOutputStream(filePath);
             int count = 0;
             byte[] b = new byte[8 * 1024];
-            while( (count=object.read(b)) != -1 )
-                out.write(b,0,count);
+            while ((count = object.read(b)) != -1)
+                out.write(b, 0, count);
             object.close();
             out.close();
         } catch (Exception e) {
@@ -308,15 +317,15 @@ public class S3StorageUtil {
     private static ByteBuffer readFileToByteBuffer(String filepath) {
         try {
             File file = new File(filepath);
-            InputStream is= new FileInputStream(file);
-            ByteArrayOutputStream out= new ByteArrayOutputStream();
+            InputStream is = new FileInputStream(file);
+            ByteArrayOutputStream out = new ByteArrayOutputStream();
             int count = 0;
             byte[] b = new byte[8 * 1024];
-            while( (count=is.read(b)) != -1 )
-                out.write(b,0,count);
+            while ((count = is.read(b)) != -1)
+                out.write(b, 0, count);
             is.close();
             return ByteBuffer.wrap(out.toByteArray());
-        } catch(Exception e) {
+        } catch (Exception e) {
             log.error("FileStorageUtil#readFileToByteBuffer:" + e);
             return null;
         }
@@ -325,10 +334,10 @@ public class S3StorageUtil {
     private static ByteBuffer readMultipartFileToByteBuffer(MultipartFile file) {
         try {
             byte[] bytes = file.getBytes();
-            ByteArrayOutputStream out= new ByteArrayOutputStream();
+            ByteArrayOutputStream out = new ByteArrayOutputStream();
             out.write(bytes);
             return ByteBuffer.wrap(out.toByteArray());
-        } catch(Exception e) {
+        } catch (Exception e) {
             log.error("FileStorageUtil#readMultipartFileToByteBuffer:" + e);
             return null;
         }

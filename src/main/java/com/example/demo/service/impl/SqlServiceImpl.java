@@ -17,7 +17,7 @@ public class SqlServiceImpl extends ServiceImpl<SqlMapper, Antlia2tbltext> imple
 
     @Override
     public String getList(Long id) {
-        List<Antlia2tbltext> result=sqlMapper.getList(id);
+        List<Antlia2tbltext> result = sqlMapper.getList(id);
         for (Antlia2tbltext antlia2tbltext : result) {
 
         }

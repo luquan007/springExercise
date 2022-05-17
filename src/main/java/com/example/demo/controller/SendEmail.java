@@ -26,6 +26,7 @@ public class SendEmail {
 
     /**
      * 发送简单的邮件
+     *
      * @param from
      * @param to
      * @param subject

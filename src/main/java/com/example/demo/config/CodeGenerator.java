@@ -28,7 +28,7 @@ import java.util.Scanner;
 public class CodeGenerator {
 
     private static String projectPath = System.getProperty("user.dir");
-    private static String DriverName ="com.mysql.cj.jdbc.Driver";
+    private static String DriverName = "com.mysql.cj.jdbc.Driver";
     //private static String Url = "jdbc:mysql://49.233.123.122:3306/iot?useUnicode=true&useSSL=false&characterEncoding=utf8";
     private static String Url = "jdbc:mysql://127.0.0.1:3306/test?useUnicode=true&useSSL=false&characterEncoding=utf8&serverTimezone=Asia/Shanghai";
     private static String username = "root";
@@ -56,9 +56,10 @@ public class CodeGenerator {
 
     /**
      * 全局配置
+     *
      * @return
      */
-    public static GlobalConfig getGlobalConfig(){
+    public static GlobalConfig getGlobalConfig() {
         GlobalConfig gc = new GlobalConfig();
 //        MICROSERVICE = scanner("微服务名");
 //        gc.setOutputDir(projectPath + "/" + MICROSERVICE + "/src/main/java");
@@ -75,9 +76,10 @@ public class CodeGenerator {
 
     /**
      * 数据源配置
+     *
      * @return
      */
-    public static DataSourceConfig getDataSourceConfig(){
+    public static DataSourceConfig getDataSourceConfig() {
         DataSourceConfig dsc = new DataSourceConfig();
         dsc.setDriverName(DriverName);
         dsc.setUrl(Url);
@@ -89,9 +91,10 @@ public class CodeGenerator {
 
     /**
      * 包配置
+     *
      * @return
      */
-    public static PackageConfig getPackageConfig(){
+    public static PackageConfig getPackageConfig() {
         PackageConfig pc = new PackageConfig();
         //将来代码会生成于com.isoftStone.manage.user的目录下
         //自定义输入模块名称
@@ -106,9 +109,10 @@ public class CodeGenerator {
 
     /**
      * 策略配置
+     *
      * @return
      */
-    public static StrategyConfig getStrategyConfig(){
+    public static StrategyConfig getStrategyConfig() {
         StrategyConfig strategy = new StrategyConfig();
         //下划线转驼峰命名
         strategy.setNaming(NamingStrategy.underline_to_camel);
@@ -183,7 +187,7 @@ public class CodeGenerator {
             @Override
             public String outputFile(TableInfo tableInfo) {
                 // 自定义输出文件名 ， 如果你 Entity 设置了前后缀、此处注意 xml 的名称会跟着发生变化！！
-                return projectPath +"/"+ MICROSERVICE + "/src/main/resources/mapper/" + pc.getModuleName()
+                return projectPath + "/" + MICROSERVICE + "/src/main/resources/mapper/" + pc.getModuleName()
                         + "/" + tableInfo.getEntityName() + "Mapper" + StringPool.DOT_XML;
             }
         });

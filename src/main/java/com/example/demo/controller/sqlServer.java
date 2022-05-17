@@ -23,13 +23,14 @@ public class sqlServer {
     LampService lampService;
 
     @GetMapping("get")
-    public String getData(Long id){
+    public String getData(Long id) {
         return sqlService.getList(id);
     }
+
     /**
      * 定时器
      * Timer timer = new Timer();
-     *         timer.schedule(new DomeTimerTask(), 2000L, 1000L * 40);
+     * timer.schedule(new DomeTimerTask(), 2000L, 1000L * 40);
      */
     public class DomeTimerTask extends TimerTask {
         @Override

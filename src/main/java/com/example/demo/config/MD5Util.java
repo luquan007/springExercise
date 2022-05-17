@@ -7,7 +7,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 /**
- *  md5工具类
+ * md5工具类
  */
 public class MD5Util {
     public static final int time = 5;

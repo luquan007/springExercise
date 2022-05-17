@@ -8,7 +8,7 @@ import lombok.EqualsAndHashCode;
 
 @Data
 @EqualsAndHashCode()
-public class Antlia2tbltext  {
+public class Antlia2tbltext {
 
     /**
      * 主键id

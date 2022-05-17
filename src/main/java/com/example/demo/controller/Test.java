@@ -7,9 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.*;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Timer;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.zip.ZipOutputStream;
 
@@ -30,7 +28,7 @@ public class Test {
         return map1;
     }
 
-    public  void zip(String[] args) throws IOException {
+    public void zip(String[] args) throws IOException {
         File file = new File("E:\\Desktop\\ha.zip");
         InputStream inputStream = new FileInputStream(file);
 //        String result = new BufferedReader(new InputStreamReader(inputStream))
@@ -40,7 +38,7 @@ public class Test {
         InputStream tInputStringStream = new ByteArrayInputStream(inputStream.toString().getBytes());
 
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        int ch=0;
+        int ch = 0;
         while ((ch = tInputStringStream.read()) != -1) {
             byteArrayOutputStream.write(ch);
         }
@@ -58,8 +56,4 @@ public class Test {
     }
 
 
-    public static void main(String[] args) {
-        String s=" 222";
-        System.out.println(Long.parseLong(s));
-    }
 }

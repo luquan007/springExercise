@@ -15,13 +15,14 @@ public class FileUtils {
 
     /**
      * 创建文件夹及文件
+     *
      * @param src
      */
     public static boolean createFile(String src) {
         // path表示你所创建文件的路径
-        String path = src.substring(0,src.lastIndexOf("/"));
+        String path = src.substring(0, src.lastIndexOf("/"));
         // fileName表示你创建的文件名
-        String fileName = src.substring(src.lastIndexOf("/")+1,src.length());
+        String fileName = src.substring(src.lastIndexOf("/") + 1, src.length());
         File f = new File(path);
         if (!f.exists()) {
             f.mkdirs();
@@ -146,14 +147,14 @@ public class FileUtils {
         } catch (Exception e) {
             log.error("导出文件异常:", e);
         } finally {
-            if (fis!=null) {
+            if (fis != null) {
                 try {
                     fis.close();
                 } catch (IOException e) {
                     log.error("导出文件异常:", e);
                 }
             }
-            if (toClient!=null) {
+            if (toClient != null) {
                 try {
                     toClient.close();
                 } catch (IOException e) {
@@ -186,7 +187,7 @@ public class FileUtils {
         return toFile;
     }
 
-    public static void inputStreamToFile(InputStream ins,File file) {
+    public static void inputStreamToFile(InputStream ins, File file) {
         try {
             OutputStream os = new FileOutputStream(file);
             int bytesRead = 0;
@@ -208,7 +209,7 @@ public class FileUtils {
     }
 
 
-    public static void copyInputStreamToFile(InputStream inputStream, File file){
+    public static void copyInputStreamToFile(InputStream inputStream, File file) {
         try {
             org.apache.commons.io.FileUtils.copyInputStreamToFile(inputStream, file);
         } catch (IOException e) {
@@ -218,11 +219,12 @@ public class FileUtils {
 
     /**
      * 获取路径下的所有文件/文件夹
-     * @param directoryPath 需要遍历的文件夹路径
+     *
+     * @param directoryPath  需要遍历的文件夹路径
      * @param isAddDirectory 是否将子文件夹的路径也添加到list集合中
      * @return
      */
-    public static List<File> getAllFile(String directoryPath,boolean isAddDirectory) {
+    public static List<File> getAllFile(String directoryPath, boolean isAddDirectory) {
         List<File> list = new ArrayList<>();
         File baseFile = new File(directoryPath);
         if (baseFile.isFile() || !baseFile.exists()) {
@@ -232,10 +234,10 @@ public class FileUtils {
         File[] files = baseFile.listFiles();
         for (File file : files) {
             if (file.isDirectory()) {
-                if(isAddDirectory){
+                if (isAddDirectory) {
                     list.add(file);
                 }
-                list.addAll(getAllFile(file.getAbsolutePath(),isAddDirectory));
+                list.addAll(getAllFile(file.getAbsolutePath(), isAddDirectory));
             } else {
                 list.add(file);
             }

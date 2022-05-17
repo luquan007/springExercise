@@ -15,7 +15,7 @@ public class Ingredient {
 
     private final Type type;
 
-    public static enum Type{
-        WRAP,PROTEIN,VEGGIES,CHEESE,SAUCE
+    public static enum Type {
+        WRAP, PROTEIN, VEGGIES, CHEESE, SAUCE
     }
 }

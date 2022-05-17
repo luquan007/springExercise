@@ -12,9 +12,9 @@ import org.springframework.test.context.junit4.SpringRunner;
  */
 @SpringBootTest
 @RunWith(SpringRunner.class)
-public class CreateThreadDemo  extends Thread {
+public class CreateThreadDemo extends Thread {
 
-    public CreateThreadDemo(){
+    public CreateThreadDemo() {
         //设置当前线程名称
         this.setName("MyThread");
     }
@@ -23,18 +23,18 @@ public class CreateThreadDemo  extends Thread {
     @Override
     public void run() {
         new CreateThreadDemo().start();
-        while (true){
+        while (true) {
             printThreadInfo();
             Thread.sleep(1000);
         }
     }
 
     /**
-     *  输出当前线程的信息
+     * 输出当前线程的信息
      */
     @Test
-    public void printThreadInfo(){
-        System.out.println(String.format("当前运行的线程名为：%s",Thread.currentThread().getName()));
+    public void printThreadInfo() {
+        System.out.println(String.format("当前运行的线程名为：%s", Thread.currentThread().getName()));
     }
 
 
