@@ -5,7 +5,9 @@ import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 import io.netty.util.CharsetUtil;
+import org.springframework.stereotype.Service;
 
+@Service
 public class MyClientHandler extends ChannelInboundHandlerAdapter {
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
@@ -18,5 +20,9 @@ public class MyClientHandler extends ChannelInboundHandlerAdapter {
         //接收服务端发送过来的消息
         ByteBuf byteBuf = (ByteBuf) msg;
         System.out.println("收到服务端" + ctx.channel().remoteAddress() + "的消息：" + byteBuf.toString(CharsetUtil.UTF_8));
+    }
+
+    public void sendMsg(ChannelHandlerContext ctx,String msg){
+        ctx.writeAndFlush(Unpooled.copiedBuffer(msg, CharsetUtil.UTF_8));
     }
 }

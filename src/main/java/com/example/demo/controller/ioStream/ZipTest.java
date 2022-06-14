@@ -4,6 +4,7 @@ import cn.hutool.http.HttpRequest;
 import cn.hutool.http.HttpResponse;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.example.demo.utils.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.tika.metadata.HttpHeaders;
 import org.apache.tika.metadata.Metadata;
@@ -12,6 +13,9 @@ import org.apache.tika.mime.MediaType;
 import org.apache.tika.parser.AutoDetectParser;
 import org.apache.tika.parser.ParseContext;
 import org.apache.tika.parser.Parser;
+
+import org.apache.tools.zip.ZipEntry;
+import org.apache.tools.zip.ZipFile;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -24,14 +28,72 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.net.URLEncoder;
 import java.nio.charset.Charset;
+import java.util.Enumeration;
 import java.util.HashMap;
-import java.util.zip.ZipEntry;
+import java.util.List;
+
 import java.util.zip.ZipInputStream;
 import java.util.zip.ZipOutputStream;
 
 @RestController
 @RequestMapping("zipTest")
 public class ZipTest {
+
+
+    @GetMapping("zipFolder")
+    public void zipFolder(String filePath) throws IOException {
+
+        ZipFile zipFile = new ZipFile(filePath);
+        String mFileName = "";
+        String mFileChange = "";
+        FileInputStream fileInputStream = new FileInputStream(filePath);
+
+        for (Enumeration<? extends ZipEntry> e = zipFile.getEntries(); e.hasMoreElements(); ) {
+            ZipEntry entry = e.nextElement();
+            if (!entry.isDirectory()) {
+                InputStream inputStream = zipFile.getInputStream(entry);
+                System.out.println("保单文件名:" + entry.getName() + ", 内容如下:");
+                String name = entry.getName();
+                String pathName = "E:/Desktop".concat("/" ) + name;
+                File markFile = new File(pathName.substring(0,pathName.lastIndexOf("/")));
+                File imgFile = new File(pathName);
+                if (!markFile.exists()) {
+                    markFile.mkdirs();
+                }
+                if (!imgFile.exists()) {
+                    imgFile.createNewFile();
+                }
+            FileOutputStream fileOutputStream = new FileOutputStream(imgFile);
+            BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(fileOutputStream);
+            int n;
+            byte[] bytes = new byte[1024];
+
+            while ((n = inputStream.read(bytes)) != -1) {
+                bufferedOutputStream.write(bytes, 0, n);
+            }
+            //关闭流
+            bufferedOutputStream.close();
+            fileOutputStream.close();
+            inputStream.close();
+            }
+        }
+       /* ZipInputStream zipInputStream = null;
+        FileInputStream fileInputStream = new FileInputStream(filePath);
+        //不指定格式的话获取不到压缩文件里的东西
+        // zipInputStream = new ZipInputStream(file.getInputStream(), Charset.forName("GBK"));
+        zipInputStream = new ZipInputStream(fileInputStream, Charset.forName("GBK"));
+        //读取zip包里的文件
+        ZipEntry nextEntry = zipInputStream.getNextEntry();
+        if(nextEntry.isDirectory()){
+            File file = new File(nextEntry.getName());
+
+            System.out.println(file.getAbsolutePath());
+        }
+        while (nextEntry!=null && !nextEntry.isDirectory()){
+            System.out.println(nextEntry);
+        }*/
+
+    }
 
 
     @PostMapping("test")
@@ -285,7 +347,7 @@ public class ZipTest {
         return "success";
     }
 
-    @PostMapping("testSix")
+    /*@PostMapping("testSix")
     public String testSix(@RequestParam("file") MultipartFile file) {
         String tempFilePath = "D:/data/transcribe_files";
         ZipInputStream zipInputStream = null;
@@ -322,7 +384,7 @@ public class ZipTest {
             e.printStackTrace();
         }
         return "success";
-    }
+    }*/
 
     @PostMapping("testSeven")
     public static String testSeven(@RequestParam("file") MultipartFile file) {

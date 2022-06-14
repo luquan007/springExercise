@@ -20,7 +20,7 @@ spring:
   redis:
     host: 127.0.0.1
     port: 6379
-    database: 0
+    database: 3
     timeout: 1000
     #password:
     lettuce:
@@ -31,13 +31,14 @@ spring:
         max-idle: 10     #连接池的最大空闲链接
 
   datasource:
-    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    #driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
     #url: jdbc:sqlserver://44.234.46.214:1433;DatabaseName=Data
     #username: sa
     # password: '*XKBJXnshu98OK4M'
-    url: jdbc:mysql://localhost:3306/test?useUnicode=true&useSSL=false&characterEncoding=utf8&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/ai2022?useUnicode=true&useSSL=false&characterEncoding=utf8&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
     username: root
-    password: 12345
+    password: 123456
     maxActive: 20
     initialSize: 1
     maxWait: 60000
@@ -51,15 +52,15 @@ spring:
     poolPreparedStatements: true
     maxOpenPreparedStatements: 20
 
-  # 发送邮箱
-  #  mail:
-  #    protocol: smtp
-  #    host: smtp.qq.com
-  #    port: 587
-  #    username: 2507755628@qq.com
-  #    #授权码
-  #    password: kcorovbnsrwuecci
-  #    default-encoding: UTF-8
+#  #发送邮箱
+#    mail:
+#      protocol: smtp
+#      host: smtp.qq.com
+#      port: 587
+#      username: 2507755628@qq.com
+#      #授权码
+#      password: kcorovbnsrwuecci
+#      default-encoding: UTF-8
   mail:
     protocol: smtp
     host: smtp.isoftstone.com
@@ -69,7 +70,35 @@ spring:
     password: h9zwe&TpWG7drn%f
     #password: xld@qSH&
     default-encoding: UTF-8
-
+#      # 生产者
+  rabbitmq:
+    username: admin
+    password: admin
+    host: 127.0.0.1
+    port: 5672
+        # 消费者
+#  rabbitmq:
+#    username: admin
+#    password: admin
+#    host: 127.0.0.1
+#    port: 5672
+#    virtual-host: my_test
+#    listener:
+#      simple:
+#        # 消费端最小并发数
+#        concurrency: 1
+#        # 消费端最大并发数
+#        max-concurrency: 5
+#        # 一次处理的消息数量
+#        prefetch: 2
+#        # 手动应答
+#        acknowledge-mode: manual
+#        retry:
+#          enabled: true
+#          max-attempts: 3
+#          initial-interval: 5000
+#      direct:
+#        acknowledge-mode: manual
 
 
 # mybatis配置
@@ -91,9 +120,34 @@ mybatis-plus:
   mapper-locations: classpath*:/mapper/*.xml
   type-aliases-package: com.isoftstone.manage.entity
 
-# # oss测试
+ # oss测试
 aliyun:
   endpoint: http://oss-cn-beijing.aliyuncs.com
   accessKeyId: LTAI5t8cbXdr9bEFsc6jvchY
   accessKeySecret: pQQJwfw13tmFyEcYCkInP6r3kOt27Y
   bucketName: issglobal
+#spring:
+#  cloud:
+#    nacos:
+#      discovery:
+#        server-addr: 127.0.0.1:8858
+#        namespace: 357b1701-4451-42fd-949d-13347e7381fb
+#      # 配置文件名称格式：${spring.application.name}-${spring.profile.active}.${spring.cloud.nacos.config.file-extension}
+#      config:
+#        server-addr: 127.0.0.1:8858
+#        file-extension: yaml
+#        group: AI_TEST_GROUP
+#        namespace: 357b1701-4451-42fd-949d-13347e7381fb
+#  mail:
+#    protocol: smtp
+#    host: smtp.isoftstone.com
+#    port: 465
+#    username: iSSMAG-Recruit@isoftstone.com
+#    #授权码
+#    password: h9zwe&TpWG7drn%f
+#    #password: xld@qSH&
+#    default-encoding: UTF-8
+mq:
+  directexchange: PARK_CLOUD_TO_APP_EXCHANGE
+  spacequeue: PARK_SPACE_QUEUE
+  directroutingkey: park-space

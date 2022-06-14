@@ -1,19 +1,61 @@
 package com.example.demo.controller;
 
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
+import com.example.demo.entity.enumeration.RoleEnum;
 import com.example.demo.utils.DomeTimerTask;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.*;
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import java.util.zip.ZipOutputStream;
 
 @RestController
 @RequestMapping("/test")
 public class Test {
+
+    @GetMapping("test")
+    public List test(String str) {
+        List list=new ArrayList();
+        List<String> jsonObjects = JSONArray.parseArray(str, String.class);
+        List<String> collect = jsonObjects.stream().map(
+                firstFloor -> {
+                    String replace = firstFloor.replace("\"name\":", "\"label\":").replace("\"attribute\":", "\"children\":");
+                    return replace;
+                }
+        ).collect(Collectors.toList());
+        return collect;
+    }
+
+    @GetMapping("contains")
+    public boolean getPermissions(@RequestParam("list")List<Long> list,@RequestParam("code") Long code) {
+        boolean b = list.stream().anyMatch(temp -> temp <= code);
+        return b;
+        /*for (Long aLong : codeList) {
+            if (aLong < code) {
+                return true;
+            }
+        }
+        return false;*/
+    }
+
+
+    /**
+     * 判断一个list里是否包含大于一个数的
+     *
+     * @param
+     * @return
+     */
+
+    public Boolean containsNum(@RequestParam("arr") List<Long> arr, @RequestParam("num") Long num) {
+
+        if (arr.stream().filter(ss -> ss < num).collect(Collectors.toList()).size() > 0) {
+            return true;
+        }
+        return false;
+    }
 
     @GetMapping("timerTask")
     public Map timerTaskTest(@RequestBody Map map1) {
@@ -55,5 +97,14 @@ public class Test {
         byteArrayOutputStream.close();
     }
 
+    @GetMapping("enumTest")
+    public void enumTest() {
+        RoleEnum[] values = RoleEnum.values();
+        for (RoleEnum value : values) {
+            if ("PM" == value.getDesc()) {
+                System.out.println(value.getCode());
+            }
+        }
+    }
 
 }
